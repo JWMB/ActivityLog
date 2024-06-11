@@ -9,13 +9,20 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "style": {
+        "noUselessElse":"off"
+      },
+      "performance": {
+        "noDelete":"off"
+      },
       "recommended": true,
       "suspicious": {
         "noExplicitAny": "off",
         "noShadowRestrictedNames": "off"
       },
       "complexity": {
-        "noStaticOnlyClass": "off"
+        "noStaticOnlyClass": "off",
+        "useLiteralKeys": "off"
       }
     }
   },
