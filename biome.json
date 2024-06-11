@@ -20,12 +20,12 @@
     }
   },
   "formatter": {
-    "enabled": true,
+    "enabled": false,
     "indentStyle": "space"
   },
   "javascript": {
     "formatter": {
-      "semicolons": "asNeeded"
+      "semicolons": "always"
     }
   }
 }
