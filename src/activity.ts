@@ -47,10 +47,12 @@ export interface Measurement {
 
 export interface LoggedActivity {
   timestamp: Date;
-  activity: string; // "rowing"
-  activityModifier?: string; // "feet on floor"
+  activity: string;
+  activityModifier?: string;
   laterality?: "l" | "r";
-  measurements: Measurement[]; // [[ "kg", 10], [ "" ]]
-  //measurements: { [key: string]: [string, number] };  // { elevation: ["m", 10]
+  measurements: Measurement[];
   comment?: string;
+
+  location?: string;
+  teacher?: string;
 }

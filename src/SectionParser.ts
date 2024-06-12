@@ -7,6 +7,8 @@ export class SectionParser {
       timestamp: new Date(2000, 0, 1),
       measurements: [],
     };
+
+    // const rxUserSpec = /\n\w+:\s/;
     const rx = /(?<measurement>\w+):(?<value>\d+)(?<unit>\w+)?/g; //(?<comment>\w+)?
 
     const sec = section.slice(1).join("\n");
