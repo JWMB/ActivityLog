@@ -1,7 +1,9 @@
-Started from [microbundle-template](https://github.com/ivandotv/microbundle-template)
+*Started from [microbundle-template](https://github.com/ivandotv/microbundle-template)*
 
+# ActivityLog
 Library with basic functionality for text-based activity logging
 
+## Purpose
 The goal is to create a system based on simple text documents, in which the editor GUI's autocompletion feature is employed to
 facilitate and simplify data entry.
 
@@ -10,6 +12,7 @@ The autocomplete feature will
 * suggest what the "configuration" of the activity should be
 * help writing the data in a way that can easily be understood by the system
 
+## Examples
 A repository with pre-defined activity types can be plugged in, e.g.
 ```
 Running
