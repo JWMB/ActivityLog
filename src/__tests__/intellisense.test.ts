@@ -19,6 +19,32 @@ class FakeEditor implements EditorInterface {
     private position: Position,
   ) {}
 
+  getSection(caretLineNumber: number): string[] {
+    let lines: string[] = [];
+    for (let lineNum = caretLineNumber; lineNum > 0; lineNum--) {
+      const line = this.getLineContent(lineNum);
+      if (line === null) {
+        break;
+      }
+      if (line.trim().length === 0) {
+        break;
+      } else {
+        lines.push(line);
+      }
+    }
+    lines = lines.reverse();
+
+    for (let lineNum = caretLineNumber + 1; lineNum < this.getLineCount(); lineNum++) {
+      const line = this.getLineContent(lineNum);
+      if (line.trim().length === 0) {
+        break;
+      }
+      lines.push(line);
+    }
+
+    return lines;
+  }
+
   getLineContent(lineNum: number): string {
     return this.content[lineNum - 1];
   }
@@ -147,9 +173,10 @@ describe.each([
     const editor = new FakeEditor(content.trim().split("\n"), { lineNumber: line, column: col });
     const getActivityTypes = () => new ActivityTypesStatic().getAll();
     const parseSection = (section: string[]) => new SectionParser().parse(section);
-    const sut: IntellisenseProvider = new DefaultIntellisenseProvider(editor, getLoggedActivities, getActivityTypes, parseSection);
+    const sut: IntellisenseProvider = new DefaultIntellisenseProvider(getLoggedActivities, getActivityTypes, parseSection, ln => editor.getSection(ln));
 
-    const proposals = sut.getProposals();
+    const position = editor.getPosition();
+    const proposals = sut.getProposals(position, editor.getLineContent(position.lineNumber - 1));
     expect(proposals.map((o, i) => o.startsWith(expected[i]))); //.toStrictEqual(expected);
   })
 });
